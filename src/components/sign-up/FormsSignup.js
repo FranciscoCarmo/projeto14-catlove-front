@@ -10,6 +10,7 @@ import { signUp } from "../../service/axiosCatLove.js";
 export default function FormsSigninSection() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
   const [nome, setNome] = useState("");
   const [foto, setFoto] = useState("");
 
@@ -25,6 +26,7 @@ export default function FormsSigninSection() {
       name: nome,
       image: foto,
       password: password,
+      confirm,
     };
     console.log(signinForm);
 
@@ -66,6 +68,12 @@ export default function FormsSigninSection() {
           disabled
           value={password}
         ></input>
+        <input
+          type="password"
+          placeholder="senha"
+          disabled
+          value={confirm}
+        ></input>
         <input type="text" placeholder="nome" disabled value={nome}></input>
         <input type="text" placeholder="foto" disabled value={foto}></input>
         <Botao type="submit" disabled fosco="true">
@@ -87,6 +95,12 @@ export default function FormsSigninSection() {
           placeholder="senha"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
+        ></input>
+        <input
+          type="password"
+          placeholder="confirme a senha"
+          onChange={(e) => setConfirm(e.target.value)}
+          value={confirm}
         ></input>
         <input
           type="text"
