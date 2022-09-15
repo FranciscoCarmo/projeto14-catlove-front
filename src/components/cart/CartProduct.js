@@ -1,10 +1,25 @@
 import styled from "styled-components";
 import { IoIosAddCircle } from "react-icons/io";
-import { AiOutlineMinusCircle } from "react-icons/ai";
+import { AiFillWechat, AiOutlineMinusCircle } from "react-icons/ai";
+import UserContext from "../../contexts/UserContext";
+import { useContext } from "react";
 
 export default function CartProduct(props) {
-    const { name, price, image, category } = props.produto;
+    const { name, price, image, category, _id } = props.produto;
+    const { myCart, setMyCart } = useContext(UserContext);
+    const cart = [...myCart];
     const num = "01";
+
+    /*  async function addToCard() {
+        let t = [];
+        let ind = await cart.indexOf(_id);
+
+        t.push(cart[1]);
+
+        /      let product = cart.splice(ind, 1);
+        let teste = { ...product[0], amount: Number(product[0].amount) + 1 }; 
+        console.log(t);
+    } */
 
     return (
         <Wrapper>
@@ -18,7 +33,7 @@ export default function CartProduct(props) {
             <div>
                 <AiOutlineMinusCircle />
                 <span>{num}</span>
-                <IoIosAddCircle />
+                <IoIosAddCircle onClick={addToCard} />
             </div>
         </Wrapper>
     );
