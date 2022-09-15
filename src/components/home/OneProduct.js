@@ -1,13 +1,19 @@
 import styled from "styled-components";
 import { BsFillHeartFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 import toy from "../../assets/toy.jpg";
 
 export default function OneProduct(props) {
-  const { name, price, image, category } = props.produto;
+  const { name, price, image, category, _id } = props.produto;
+  const navigate = useNavigate();
 
   return (
-    <Wrapper>
+    <Wrapper
+      onClick={() => {
+        navigate(`/products?${_id}`);
+      }}
+    >
       <img src={image}></img>
       <Info>
         <h3>{name}</h3>
