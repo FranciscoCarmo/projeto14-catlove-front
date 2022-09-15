@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import OneProduct from "./OneProduct";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getProducts } from "../../service/axiosCatLove";
+import UserContext from "../../contexts/UserContext";
 
 export default function Results() {
-    const [products, setProducts] = useState([]);
+    const { products, setProducts } = useContext(UserContext);
 
     function displayProducts() {
         const requisicao = getProducts();

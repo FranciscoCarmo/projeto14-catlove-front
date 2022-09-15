@@ -12,12 +12,15 @@ import MyCart from "./components/cart/Cart";
 
 export default function App() {
     const [user, setUser] = useState({});
+    const [products, setProducts] = useState([]);
 
     return (
         <>
             <GlobalStyles />
 
-            <UserContext.Provider value={{ user, setUser }}>
+            <UserContext.Provider
+                value={{ user, setUser, products, setProducts }}
+            >
                 <Content>
                     <BrowserRouter>
                         <Routes>
