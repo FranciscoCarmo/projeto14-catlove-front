@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { BsFillHandbagFill } from "react-icons/bs";
 
 export default function HeaderProduct() {
   const name = localStorage.getItem("name");
@@ -14,9 +15,9 @@ export default function HeaderProduct() {
         <IoIosArrowBack onClick={() => navigate(-1)} />
       </Back>
       <h2>CatLove</h2>
-      <ProfilePicture>
-        <img src={image} alt="" />
-      </ProfilePicture>
+      <CartIcon>
+        <BsFillHandbagFill onClick={() => navigate("/cart")} />
+      </CartIcon>
     </Wrapper>
   );
 }
@@ -42,10 +43,12 @@ const Back = styled.div`
   font-size: 25px;
 `;
 
-const ProfilePicture = styled.div`
+const CartIcon = styled.div`
   width: 35px;
   height: 35px;
   border-radius: 4px;
+
+  font-size: 28px;
 
   img {
     width: 100%;

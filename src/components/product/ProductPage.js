@@ -3,10 +3,11 @@ import UserContext from "../../contexts/UserContext";
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import HeaderProduct from "./HeaderProduct";
+import { getCart } from "../../service/axiosCatLove";
 
 export default function ProductPage() {
   const { id } = useParams();
-  const { products, setProducts } = useContext(UserContext);
+  const { products, setProducts, myCart, setMyCart } = useContext(UserContext);
   const product = products.find((product) => product._id === id);
   const { name, price, image, category, _id } = product;
 
@@ -14,7 +15,36 @@ export default function ProductPage() {
 
   const [quantity, setQuantity] = useState(1);
 
-  console.log(product);
+  function updateCart() {
+    const requisicao = getCart();
+
+    requisicao
+      .then((resposta) => {
+        console.log("Deu certo");
+        setMyCart([...resposta.data]);
+        console.log(resposta.data);
+
+        if (myCart.find((product) => product._id === id)) {
+          const productInCart = myCart.find((product) => product._id === id);
+          productInCart.amount = product.amount + quantity;
+        } else {
+          const productInCart = {
+            amount: quantity,
+            ...product,
+          };
+
+          setMyCart([productInCart, ...myCart]);
+          console.log(myCart);
+        }
+      })
+      .catch(() => {
+        alert("Falha ao pegar o carrinho");
+      });
+
+    let hasProduct = false;
+
+    console.log(myCart);
+  }
 
   return (
     <Wrapper>
@@ -37,7 +67,13 @@ export default function ProductPage() {
               <p>{quantity}</p>
               <div onClick={() => setQuantity(quantity + 1)}>+</div>
             </QuantityButton>
-            <button>Cart</button>
+            <button
+              onClick={() => {
+                updateCart();
+              }}
+            >
+              Add
+            </button>
           </Buttons>
         </PriceAndCart>
       </BottomMenu>
@@ -56,7 +92,7 @@ const Wrapper = styled.div`
 
   > img {
     margin-top: 10px;
-    height: 50%;
+    height: 30%;
   }
 `;
 
