@@ -35,18 +35,49 @@ const cart = [
     },
 ];
 
+let subtotal = 0;
+
+const frete = 999;
+
 export default function MyCart() {
     return (
         <Wrapper>
-            <CartHeader />
+            <CartHeader num={cart.length} />
             {cart.map((produto, i) => {
+                subtotal += Number(produto.price);
                 return <CartProduct produto={produto} key={i} />;
             })}
-
+            <PurchaseInfo>
+                <div>
+                    <span>Subtotal</span>
+                    <h3>R$ {(subtotal / 100).toFixed(2)}</h3>
+                </div>
+                <div>
+                    <span>Frete</span>
+                    <h3>R$ {(frete / 100).toFixed(2)}</h3>
+                </div>
+                <div>
+                    <span>Total</span>
+                    <h3>R$ {((frete + subtotal) / 100).toFixed(2)}</h3>
+                </div>
+            </PurchaseInfo>
             <button> Proceder para o CheckOut</button>
         </Wrapper>
     );
 }
+
+const PurchaseInfo = styled.div`
+    color: #1c1c1c;
+    div {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        border-bottom: 1px solid white;
+    }
+`;
 
 const Wrapper = styled.div`
     width: 100%;

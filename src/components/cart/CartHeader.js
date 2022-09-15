@@ -3,7 +3,7 @@ import { BsFillHandbagFill } from "react-icons/bs";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-export default function CartHeader() {
+export default function CartHeader({ num }) {
     const navigate = useNavigate();
 
     return (
@@ -13,6 +13,7 @@ export default function CartHeader() {
 
             <div>
                 <BsFillHandbagFill />
+                <span>{num}</span>
             </div>
         </Wrapper>
     );
@@ -43,8 +44,27 @@ const Wrapper = styled.div`
         height: 40px;
         width: 40px;
         border-radius: 5px;
+        position: relative;
 
         background-color: #ffffff;
         font-size: 18px;
+
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            border-radius: 30%;
+            color: #ffffff;
+            height: 15px;
+            width: 15px;
+            font-size: 10px;
+            font-weight: 500;
+            background-color: black;
+            transform: translateX(5px) translateY(-5px);
+
+            top: 0;
+            right: 0;
+        }
     }
 `;
