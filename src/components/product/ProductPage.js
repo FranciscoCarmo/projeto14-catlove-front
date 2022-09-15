@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import { useContext, useState } from "react";
 import styled from "styled-components";
+import HeaderProduct from "./HeaderProduct";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -17,6 +18,7 @@ export default function ProductPage() {
 
   return (
     <Wrapper>
+      <HeaderProduct />
       <img src={image}></img>
       <BottomMenu>
         <h1>{name}</h1>
@@ -52,8 +54,8 @@ const Wrapper = styled.div`
 
   background-color: white;
 
-  img {
-    margin-top: 10%;
+  > img {
+    margin-top: 10px;
     height: 50%;
   }
 `;
@@ -65,7 +67,7 @@ const BottomMenu = styled.div`
   background-color: #fcdacc;
 
   width: 100%;
-  height: 35%;
+  height: 30%;
   border-radius: 10% 10% 0 0;
 
   position: fixed;
@@ -82,7 +84,7 @@ const BottomMenu = styled.div`
   }
   h2 {
     font-size: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 15px;
   }
 `;
 
