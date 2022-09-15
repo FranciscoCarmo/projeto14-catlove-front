@@ -11,7 +11,7 @@ export default function OneProduct(props) {
   return (
     <Wrapper
       onClick={() => {
-        navigate(`/products?${_id}`);
+        navigate(`/home/${_id}`);
       }}
     >
       <img src={image}></img>
