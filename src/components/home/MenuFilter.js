@@ -36,7 +36,7 @@ export default function MenuFilter({ products, setProducts }) {
         <input type="radio" value="petiscos" name="category" /> Petiscos
       </div>
       <div>
-        <input type="radio" value="" name="category" checked /> Todas
+        <input type="radio" value="" name="category" /> Todas
       </div>
     </Wrapper>
   );
