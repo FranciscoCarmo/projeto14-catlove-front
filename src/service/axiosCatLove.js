@@ -53,6 +53,19 @@ async function getTextFilteredProducts(search) {
   }
 }
 
+async function getProductsOfCategory(category) {
+  const config = createHeaders();
+  try {
+    const promise = await axios.get(
+      `${baseURL}/products?category=${category}`,
+      config
+    );
+    return promise;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 async function endSession() {
   const config = createHeaders();
   try {
@@ -63,4 +76,11 @@ async function endSession() {
   }
 }
 
-export { signIn, signUp, endSession, getProducts, getTextFilteredProducts };
+export {
+  signIn,
+  signUp,
+  endSession,
+  getProducts,
+  getTextFilteredProducts,
+  getProductsOfCategory,
+};
