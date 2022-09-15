@@ -3,8 +3,7 @@ import OneProduct from "./OneProduct";
 import { useState, useEffect } from "react";
 import { getProducts } from "../../service/axiosCatLove";
 
-export default function Results() {
-  const [products, setProducts] = useState([]);
+export default function Results({ products, setProducts }) {
   const [array1, setArray1] = useState([]);
   const [array2, setArray2] = useState([]);
 
@@ -39,6 +38,17 @@ export default function Results() {
   }
 
   useEffect(displayProducts, []);
+
+  useEffect(() => {
+    if (products.length > 0) {
+      for (let i = 0; i < products.length; i++) {
+        if (i % 2 == 0) arr1.push(products[i]);
+        else arr2.push(products[i]);
+      }
+      setArray1([...arr1]);
+      setArray2([...arr2]);
+    }
+  }, [products]);
 
   return (
     <Wrapper>

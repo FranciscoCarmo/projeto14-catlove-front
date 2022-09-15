@@ -1,14 +1,44 @@
 import styled from "styled-components";
+import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { RiFilterFill } from "react-icons/ri";
+import { getTextFilteredProducts } from "../../service/axiosCatLove";
 
-export default function Searches() {
+export default function Searches({ products, setProducts }) {
+  const [textSearch, setTextSearch] = useState("");
+
+  function handleEnter(e) {
+    if (e.key === "Enter") {
+      const requisicao = getTextFilteredProducts(textSearch);
+
+      requisicao
+        .then((resposta) => {
+          console.log("Deu certo");
+          setProducts([...resposta.data]);
+
+          // setTextSearch("");
+        })
+        .catch(() => {
+          alert("Falha ao pegar os produtos filtrados");
+
+          console.log(requisicao);
+          setTextSearch("");
+        });
+    }
+  }
+
   return (
     <Wrapper>
       <IconDiv>
         <FiSearch />
       </IconDiv>
-      <TextSearch type="text" placeholder="Pesquisa"></TextSearch>
+      <TextSearch
+        type="text"
+        placeholder="Pesquisa"
+        onChange={(e) => setTextSearch(e.target.value)}
+        value={textSearch}
+        onKeyDown={(e) => handleEnter(e)}
+      ></TextSearch>
       <Filter>
         <RiFilterFill />
       </Filter>

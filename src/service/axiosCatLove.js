@@ -40,6 +40,19 @@ async function getProducts() {
   }
 }
 
+async function getTextFilteredProducts(search) {
+  const config = createHeaders();
+  try {
+    const promise = await axios.get(
+      `${baseURL}/products?search=${search}`,
+      config
+    );
+    return promise;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 async function endSession() {
   const config = createHeaders();
   try {
@@ -50,4 +63,4 @@ async function endSession() {
   }
 }
 
-export { signIn, signUp, endSession, getProducts };
+export { signIn, signUp, endSession, getProducts, getTextFilteredProducts };
