@@ -3,7 +3,7 @@ import UserContext from "../../contexts/UserContext";
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import HeaderProduct from "./HeaderProduct";
-import { getCart } from "../../service/axiosCatLove";
+import { getCart, postCart } from "../../service/axiosCatLove";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -32,9 +32,10 @@ export default function ProductPage() {
             amount: quantity,
             ...product,
           };
+          const newCart = [productInCart, ...myCart];
 
-          setMyCart([productInCart, ...myCart]);
-          console.log(myCart);
+          setMyCart(newCart);
+          postCart(newCart);
         }
       })
       .catch(() => {
@@ -49,7 +50,10 @@ export default function ProductPage() {
   return (
     <Wrapper>
       <HeaderProduct />
-      <img src={image}></img>
+      <ProductImage>
+        <img src={image}></img>
+      </ProductImage>
+
       <BottomMenu>
         <h1>{name}</h1>
         <h2>{categoryUpper}</h2>
@@ -184,5 +188,18 @@ const QuantityButton = styled.div`
 
     display: flex;
     justify-content: center;
+  }
+`;
+
+const ProductImage = styled.div`
+  width: 100%;
+  height: 350px;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  img {
+    height: 300px;
   }
 `;
