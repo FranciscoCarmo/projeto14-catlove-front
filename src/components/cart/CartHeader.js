@@ -28,7 +28,7 @@ const Wrapper = styled.div`
     margin-bottom: 30px;
     color: #1c1c1c;
 
-    h2 {
+    h1 {
         font-size: 15px;
         font-weight: bold;
     }

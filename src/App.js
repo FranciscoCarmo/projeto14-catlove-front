@@ -13,13 +13,23 @@ import ProductPage from "./components/product/ProductPage";
 
 export default function App() {
   const [user, setUser] = useState({});
+  const [myCart, setMyCart] = useState([]);
   const [products, setProducts] = useState([]);
 
   return (
     <>
       <GlobalStyles />
 
-      <UserContext.Provider value={{ user, setUser, products, setProducts }}>
+      <UserContext.Provider
+        value={{
+          user,
+          setUser,
+          myCart,
+          setMyCart,
+          products,
+          setProducts,
+        }}
+      >
         <Content>
           <BrowserRouter>
             <Routes>
