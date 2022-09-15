@@ -5,13 +5,13 @@ import { getCart } from "../../service/axiosCatLove";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 
-const cart = [
+/* const cart = [
     {
         name: "Ração Seca Nutrilus Pro Carne para Gatos Adultos - 10,1Kg",
         image: "https://www.petlove.com.br/images/products/250518/small/2661128_FRENTE.jpg?1635791683",
         price: "13671",
         category: "rações",
-        amount: "7",
+        amount: "2",
     },
     {
         name: "Ração Royal Canin Sterilised para Gatos Adultos Castrados - 10,1Kg",
@@ -41,35 +41,42 @@ const cart = [
         amount: "1",
         category: "rações",
     },
-];
+]; */
 
 const frete = 999;
 
 export default function MyCart() {
     const { myCart, setMyCart } = useContext(UserContext);
+    const { reload } = useContext(UserContext);
     let subtotal = 0;
 
     myCart.forEach((e) => {
-        let p = Number(e.price);
-        let a = Number(e.amount);
-        subtotal += a * p;
+        let price = Number(e.price);
+        let amount = Number(e.amount);
+
+        if (amount == 0) {
+            return;
+        }
+        subtotal += amount * price;
+        console.log(amount);
     });
 
-    useEffect(() => {
+    /*  useEffect(() => {
         setMyCart([...cart]);
-    }, []);
+    }, [reload]); */
 
-    /* useEffect(() => {
+    useEffect(() => {
         getCart()
             .then((res) => {
                 console.log("get card concluído");
                 setMyCart([...res.data]);
+                console.log(myCart);
             })
             .catch((err) => {
                 alert("Falha ao pegar o carrinho");
                 console.log(err);
             });
-    }, []); */
+    }, [reload]);
 
     return (
         <Wrapper>

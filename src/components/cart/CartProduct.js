@@ -3,25 +3,35 @@ import { IoIosAddCircle } from "react-icons/io";
 import { AiFillWechat, AiOutlineMinusCircle } from "react-icons/ai";
 import UserContext from "../../contexts/UserContext";
 import { useContext } from "react";
+import { postCart } from "../../service/axiosCatLove";
 
 export default function CartProduct(props) {
     const { name, price, image, category, amount } = props.produto;
+    const { reload, setReload } = useContext(UserContext);
     const { myCart, setMyCart } = useContext(UserContext);
     const cart = [...myCart];
 
-    function addToCart() {
-        let ind = cart.indexOf(props.produto);
-        cart[ind].amount++;
-        setMyCart(cart);
-    }
-
-    async function removeFromCart() {
-        if (amount === 0) {
+    async function changeAmount(type) {
+        if (amount === 0 && type === "minus") {
             return;
         }
         let ind = cart.indexOf(props.produto);
-        cart[ind].amount--;
+        if (type === "minus") {
+            cart[ind].amount--;
+        } else {
+            cart[ind].amount++;
+        }
+        setReload(reload + 1);
         setMyCart(cart);
+
+        postCart(myCart)
+            .then((res) => {
+                console.log("sucesso ao postar carrinho");
+            })
+            .catch((err) => {
+                alert("Falha ao enviar o carrinho");
+                console.log(err);
+            });
     }
 
     return (
@@ -34,9 +44,9 @@ export default function CartProduct(props) {
                 <h2>R$ {(price / 100).toFixed(2)}</h2>
             </ProductInfo>
             <div>
-                <AiOutlineMinusCircle onClick={() => removeFromCart()} />
+                <AiOutlineMinusCircle onClick={() => changeAmount("minus")} />
                 <span>{amount}</span>
-                <IoIosAddCircle onClick={() => addToCart()} />
+                <IoIosAddCircle onClick={() => changeAmount("plus")} />
             </div>
         </Wrapper>
     );

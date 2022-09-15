@@ -14,6 +14,7 @@ export default function App() {
     const [user, setUser] = useState({});
     const [myCart, setMyCart] = useState([]);
     const [products, setProducts] = useState([]);
+    const [reload, setReload] = useState(0);
 
     return (
         <>
@@ -27,6 +28,8 @@ export default function App() {
                     setMyCart,
                     products,
                     setProducts,
+                    reload,
+                    setReload,
                 }}
             >
                 <Content>
