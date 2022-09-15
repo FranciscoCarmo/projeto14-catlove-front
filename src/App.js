@@ -12,6 +12,7 @@ import MyCart from "./components/cart/Cart";
 
 export default function App() {
     const [user, setUser] = useState({});
+    const [myCart, setMyCart] = useState([]);
     const [products, setProducts] = useState([]);
 
     return (
@@ -19,7 +20,14 @@ export default function App() {
             <GlobalStyles />
 
             <UserContext.Provider
-                value={{ user, setUser, products, setProducts }}
+                value={{
+                    user,
+                    setUser,
+                    myCart,
+                    setMyCart,
+                    products,
+                    setProducts,
+                }}
             >
                 <Content>
                     <BrowserRouter>
