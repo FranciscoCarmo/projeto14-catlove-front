@@ -1,16 +1,11 @@
 import styled from "styled-components";
 import OneProduct from "./OneProduct";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getProducts } from "../../service/axiosCatLove";
+import UserContext from "../../contexts/UserContext";
 
-export default function Results({ products, setProducts }) {
-  const [array1, setArray1] = useState([]);
-  const [array2, setArray2] = useState([]);
-
-  const arr1 = [];
-  const arr2 = [];
-
-  let arrayProdutos = [];
+export default function Results() {
+  const { products, setProducts } = useContext(UserContext);
 
   function displayProducts() {
     const requisicao = getProducts();
@@ -18,37 +13,17 @@ export default function Results({ products, setProducts }) {
     requisicao
       .then((resposta) => {
         console.log("Deu certo");
-        arrayProdutos = [...resposta.data];
+        setProducts([...resposta.data]);
         console.log(resposta.data);
-
-        for (let i = 0; i < resposta.data.length; i++) {
-          if (i % 2 == 0) arr1.push(resposta.data[i]);
-          else arr2.push(resposta.data[i]);
-        }
-        setArray1([...arr1]);
-        setArray2([...arr2]);
       })
       .catch(() => {
         alert("Falha ao pegar os produtos");
 
-        console.log(requisicao);
+        console.log(products);
       });
-
-    // Divide o array
   }
 
   useEffect(displayProducts, []);
-
-  useEffect(() => {
-    if (products.length > 0) {
-      for (let i = 0; i < products.length; i++) {
-        if (i % 2 == 0) arr1.push(products[i]);
-        else arr2.push(products[i]);
-      }
-      setArray1([...arr1]);
-      setArray2([...arr2]);
-    }
-  }, [products]);
 
   return (
     <Wrapper>
@@ -56,12 +31,18 @@ export default function Results({ products, setProducts }) {
         <Title>
           <h1>Produtos encontrados</h1>
         </Title>
-        {array1.map((produto) => {
+        {products.map((produto, i) => {
+          if (i % 2 !== 0) {
+            return;
+          }
           return <OneProduct produto={produto} key={produto._id} />;
         })}
       </Fila>
       <Fila>
-        {array2.map((produto) => {
+        {products.map((produto, i) => {
+          if (i % 2 === 0) {
+            return;
+          }
           return <OneProduct produto={produto} key={produto._id} />;
         })}
       </Fila>
