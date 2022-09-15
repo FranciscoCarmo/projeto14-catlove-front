@@ -43,16 +43,21 @@ const cart = [
     },
 ];
 
-let subtotal = 0;
-
 const frete = 999;
 
 export default function MyCart() {
     const { myCart, setMyCart } = useContext(UserContext);
+    let subtotal = 0;
+
+    myCart.forEach((e) => {
+        let p = Number(e.price);
+        let a = Number(e.amount);
+        subtotal += a * p;
+    });
 
     useEffect(() => {
         setMyCart([...cart]);
-    }, [cart]);
+    }, []);
 
     /* useEffect(() => {
         getCart()
@@ -73,7 +78,9 @@ export default function MyCart() {
                 <>
                     {myCart.map((produto, i) => {
                         subtotal += Number(produto.price);
-                        return <CartProduct produto={produto} key={i} />;
+                        return (
+                            <CartProduct index={i} produto={produto} key={i} />
+                        );
                     })}
                 </>
             ) : (

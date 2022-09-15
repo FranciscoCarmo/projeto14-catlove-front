@@ -5,21 +5,24 @@ import UserContext from "../../contexts/UserContext";
 import { useContext } from "react";
 
 export default function CartProduct(props) {
-    const { name, price, image, category, _id } = props.produto;
+    const { name, price, image, category, amount } = props.produto;
     const { myCart, setMyCart } = useContext(UserContext);
     const cart = [...myCart];
-    const num = "01";
 
-    /*  async function addToCard() {
-        let t = [];
-        let ind = await cart.indexOf(_id);
+    function addToCart() {
+        let ind = cart.indexOf(props.produto);
+        cart[ind].amount++;
+        setMyCart(cart);
+    }
 
-        t.push(cart[1]);
-
-        /      let product = cart.splice(ind, 1);
-        let teste = { ...product[0], amount: Number(product[0].amount) + 1 }; 
-        console.log(t);
-    } */
+    async function removeFromCart() {
+        if (amount === 0) {
+            return;
+        }
+        let ind = cart.indexOf(props.produto);
+        cart[ind].amount--;
+        setMyCart(cart);
+    }
 
     return (
         <Wrapper>
@@ -31,9 +34,9 @@ export default function CartProduct(props) {
                 <h2>R$ {(price / 100).toFixed(2)}</h2>
             </ProductInfo>
             <div>
-                <AiOutlineMinusCircle />
-                <span>{num}</span>
-                <IoIosAddCircle onClick={addToCard} />
+                <AiOutlineMinusCircle onClick={() => removeFromCart()} />
+                <span>{amount}</span>
+                <IoIosAddCircle onClick={() => addToCart()} />
             </div>
         </Wrapper>
     );
