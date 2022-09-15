@@ -6,6 +6,7 @@ import UserContext from "./contexts/UserContext";
 
 import LoginPage from "./components/LoginPage";
 import SignupPage from "./components/sign-up/SignupPage";
+import Home from "./components/home/Home";
 // import SigninPage from "./components/SignInPage";
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<LoginPage />}></Route>
               <Route path="/cadastro" element={<SignupPage />}></Route>
+              <Route path="/home" element={<Home />}></Route>
             </Routes>
           </BrowserRouter>
         </Content>
@@ -31,14 +33,17 @@ export default function App() {
 
 const Content = styled.div`
   max-width: 375px;
-  width: 100vw;
+  min-width: 100vw;
 
-  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
 
   display: flex;
   flex-direction: column;
 
   box-sizing: border-box;
+  overflow-y: scroll;
 
   font-family: "Lexend Deca", sans-serif;
 

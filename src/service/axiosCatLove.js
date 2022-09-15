@@ -30,6 +30,16 @@ async function signUp(body) {
   }
 }
 
+async function getProducts() {
+  const config = createHeaders();
+  try {
+    const promise = await axios.get(`${baseURL}/products`, config);
+    return promise;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 async function endSession() {
   const config = createHeaders();
   try {
@@ -40,4 +50,4 @@ async function endSession() {
   }
 }
 
-export { signIn, signUp, endSession };
+export { signIn, signUp, endSession, getProducts };

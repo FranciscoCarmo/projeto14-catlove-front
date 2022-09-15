@@ -33,6 +33,11 @@ export default function FormsSection() {
         console.log("Deu certo");
         console.log(resposta.data);
         setUser({ ...resposta.data });
+        console.log(resposta.data.token);
+
+        localStorage.setItem("token", resposta.data.token);
+        localStorage.setItem("image", resposta.data.image);
+        localStorage.setItem("name", resposta.data.name);
 
         navigate("/home", { replace: true });
 

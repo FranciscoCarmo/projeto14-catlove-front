@@ -39,8 +39,6 @@ export default function FormsSigninSection() {
         console.log("Deu certo");
         console.log(requisicao);
 
-        localStorage.setItem("token", "requisicao.body.token");
-
         navigate("/", { replace: true });
 
         setEmail("");
