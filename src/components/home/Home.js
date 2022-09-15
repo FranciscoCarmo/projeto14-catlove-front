@@ -2,13 +2,16 @@ import styled from "styled-components";
 import Header from "./Header";
 import Searches from "./Searches";
 import Results from "./Results";
+import { useState } from "react";
 
 export default function Home() {
+  const [products, setProducts] = useState([]);
+
   return (
     <Wrapper>
       <Header />
-      <Searches />
-      <Results />
+      <Searches products={products} setProducts={setProducts} />
+      <Results products={products} setProducts={setProducts} />
     </Wrapper>
   );
 }
