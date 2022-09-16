@@ -32,7 +32,7 @@ export default function ProductPage() {
 
           const newCart = { products: [...resposta.data] };
 
-          setMyCart(...resposta.data);
+          setMyCart([...resposta.data]);
           postCart(newCart);
           console.log(newCart);
         } else {
