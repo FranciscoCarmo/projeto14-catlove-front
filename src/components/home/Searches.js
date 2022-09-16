@@ -5,12 +5,10 @@ import { RiFilterFill } from "react-icons/ri";
 import { BsFillHandbagFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
-import { useContext } from "react";
 
 import { getTextFilteredProducts } from "../../service/axiosCatLove";
 
 import MenuFilter from "./MenuFilter";
-import UserContext from "../../contexts/UserContext";
 
 export default function Searches() {
   const { products, setProducts } = useContext(UserContext);
