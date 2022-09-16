@@ -12,57 +12,66 @@ import ProductPage from "./components/product/ProductPage";
 // import SigninPage from "./components/SignInPage";
 
 export default function App() {
-  const [user, setUser] = useState({});
-  const [myCart, setMyCart] = useState([]);
-  const [products, setProducts] = useState([]);
+    const [user, setUser] = useState({});
+    const [myCart, setMyCart] = useState([]);
+    const [products, setProducts] = useState([]);
+    const [reload, setReload] = useState(0);
 
-  return (
-    <>
-      <GlobalStyles />
+    return (
+        <>
+            <GlobalStyles />
 
-      <UserContext.Provider
-        value={{
-          user,
-          setUser,
-          myCart,
-          setMyCart,
-          products,
-          setProducts,
-        }}
-      >
-        <Content>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<LoginPage />}></Route>
-              <Route path="/cadastro" element={<SignupPage />}></Route>
-              <Route path="/home" element={<Home />}></Route>
-              <Route path="/cart" element={<MyCart />}></Route>
-              <Route path="/home/:id" element={<ProductPage />}></Route>
-            </Routes>
-          </BrowserRouter>
-        </Content>
-      </UserContext.Provider>
-    </>
-  );
+            <UserContext.Provider
+                value={{
+                    user,
+                    setUser,
+                    myCart,
+                    setMyCart,
+                    products,
+                    setProducts,
+                    reload,
+                    setReload,
+                }}
+            >
+                <Content>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path='/' element={<LoginPage />}></Route>
+                            <Route
+                                path='/cadastro'
+                                element={<SignupPage />}
+                            ></Route>
+                            <Route path='/home' element={<Home />}></Route>
+                            <Route path='/cart' element={<MyCart />}></Route>
+                            <Route
+                                path='/home/:id'
+                                element={<ProductPage />}
+                            ></Route>
+                        </Routes>
+                    </BrowserRouter>
+                </Content>
+            </UserContext.Provider>
+        </>
+    );
 }
 
 const Content = styled.div`
-  max-width: 375px;
-  min-width: 100vw;
+    max-width: 375px;
+    min-width: 100vw;
 
-  position: absolute;
-  top: 0;
-  left: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
 
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-  box-sizing: border-box;
-  overflow-y: scroll;
-
-  font-family: "Lexend Deca", sans-serif;
-
-  * {
     box-sizing: border-box;
-  }
+    overflow-y: scroll;
+
+    font-family: "Lexend Deca", sans-serif;
+
+    * {
+        box-sizing: border-box;
+    }
 `;
