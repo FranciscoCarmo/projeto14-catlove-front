@@ -40,6 +40,7 @@ export default function CartProduct(props) {
       .then((res) => {
         console.log(props.produto);
         console.log("sucesso ao enviar deletar");
+        setReload(reload + 1);
       })
       .catch((err) => {
         alert("Falha ao enviar o delete");

@@ -99,7 +99,7 @@ async function postCart(body) {
 async function deleteProduct(body) {
   const config = createHeaders();
   try {
-    const promise = await axios.delete(`${baseURL}/cart`, body, config);
+    const promise = await axios.delete(`${baseURL}/cart/${body._id}`, config);
     return promise;
   } catch (error) {
     console.error(error);
