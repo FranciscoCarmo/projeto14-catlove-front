@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { RiFilterFill } from "react-icons/ri";
 import { BsFillHandbagFill } from "react-icons/bs";
@@ -10,23 +10,25 @@ import { useContext } from "react";
 import { getTextFilteredProducts } from "../../service/axiosCatLove";
 
 import MenuFilter from "./MenuFilter";
+import UserContext from "../../contexts/UserContext";
 
 export default function Searches() {
+  const { products, setProducts } = useContext(UserContext);
   const [textSearch, setTextSearch] = useState("");
   const [isFiltering, setIsFiltering] = useState(false);
-  const { products, setProducts } = useContext(UserContext);
 
   const navigate = useNavigate();
 
   function handleEnter(e) {
     if (e.key === "Enter") {
       const requisicao = getTextFilteredProducts(textSearch);
+      console.log(textSearch);
 
       requisicao
         .then((resposta) => {
           console.log("Deu certo");
           setProducts([...resposta.data]);
-          console.log(resposta.data);
+          console.log([...resposta.data]);
         })
         .catch(() => {
           alert("Falha ao pegar os produtos filtrados");

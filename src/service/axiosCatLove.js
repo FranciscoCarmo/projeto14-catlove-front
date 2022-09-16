@@ -106,7 +106,18 @@ async function deleteProduct(body) {
   }
 }
 
+async function CheckOutCart(body) {
+    const config = createHeaders();
+    try {
+        const promise = await axios.post(`${baseURL}/checkout`, body, config);
+        return promise;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 export {
+<<<<<<< HEAD
   signIn,
   signUp,
   endSession,
@@ -116,4 +127,15 @@ export {
   getCart,
   postCart,
   deleteProduct,
+=======
+    signIn,
+    signUp,
+    endSession,
+    getProducts,
+    getTextFilteredProducts,
+    getProductsOfCategory,
+    getCart,
+    postCart,
+    CheckOutCart,
+>>>>>>> main
 };
