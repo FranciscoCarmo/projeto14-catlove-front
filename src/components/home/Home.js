@@ -2,10 +2,11 @@ import styled from "styled-components";
 import Header from "./Header";
 import Searches from "./Searches";
 import Results from "./Results";
-import { useState } from "react";
+import UserContext from "../../contexts/UserContext";
+import { useContext } from "react";
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
+  const { products, setProducts } = useContext(UserContext);
 
   return (
     <Wrapper>

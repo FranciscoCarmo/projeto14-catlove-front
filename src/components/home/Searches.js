@@ -4,14 +4,17 @@ import { FiSearch } from "react-icons/fi";
 import { RiFilterFill } from "react-icons/ri";
 import { BsFillHandbagFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../../contexts/UserContext";
+import { useContext } from "react";
 
 import { getTextFilteredProducts } from "../../service/axiosCatLove";
 
 import MenuFilter from "./MenuFilter";
 
-export default function Searches({ products, setProducts }) {
+export default function Searches() {
   const [textSearch, setTextSearch] = useState("");
   const [isFiltering, setIsFiltering] = useState(false);
+  const { products, setProducts } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -23,6 +26,7 @@ export default function Searches({ products, setProducts }) {
         .then((resposta) => {
           console.log("Deu certo");
           setProducts([...resposta.data]);
+          console.log(resposta.data);
         })
         .catch(() => {
           alert("Falha ao pegar os produtos filtrados");
