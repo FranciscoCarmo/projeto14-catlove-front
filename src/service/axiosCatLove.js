@@ -96,6 +96,16 @@ async function postCart(body) {
     }
 }
 
+async function CheckOutCart(body) {
+    const config = createHeaders();
+    try {
+        const promise = await axios.post(`${baseURL}/checkout`, body, config);
+        return promise;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 export {
     signIn,
     signUp,
@@ -105,4 +115,5 @@ export {
     getProductsOfCategory,
     getCart,
     postCart,
+    CheckOutCart,
 };

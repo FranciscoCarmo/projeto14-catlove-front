@@ -4,12 +4,15 @@ import CartProduct from "./CartProduct";
 import { getCart } from "../../service/axiosCatLove";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../../contexts/UserContext";
+import Checkout from "./CartCheckout";
 
 const frete = 999;
 
 export default function MyCart() {
+    const [visible, setVisible] = useState(false);
     const { myCart, setMyCart } = useContext(UserContext);
     const { reload } = useContext(UserContext);
+
     let subtotal = 0;
 
     myCart.forEach((e) => {
@@ -34,6 +37,12 @@ export default function MyCart() {
     return (
         <Wrapper>
             <CartHeader num={myCart.length} />
+            <Checkout
+                visible={visible}
+                setVisible={setVisible}
+                products={myCart}
+                value={subtotal + frete}
+            />
             {myCart.length > 0 ? (
                 <>
                     {myCart.map((produto, i) => {
@@ -68,7 +77,10 @@ export default function MyCart() {
                     <></>
                 )}
             </PurchaseInfo>
-            <button> Proceder para o CheckOut</button>
+            <button onClick={() => setVisible(true)}>
+                {" "}
+                Proceder para o CheckOut
+            </button>
         </Wrapper>
     );
 }
