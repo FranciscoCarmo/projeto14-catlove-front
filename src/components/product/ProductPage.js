@@ -24,27 +24,37 @@ export default function ProductPage() {
         setMyCart([...resposta.data]);
         console.log(resposta.data);
 
-        if (myCart.find((product) => product._id === id)) {
-          const productInCart = myCart.find((product) => product._id === id);
-          productInCart.amount = product.amount + quantity;
+        if (resposta.data.find((prod) => prod._id === id)) {
+          const productInCart = resposta.data.find((prod) => prod._id === id);
+          console.log("productInCart: ");
+          console.log(productInCart);
+          productInCart.amount = productInCart.amount + quantity;
+
+          const newCart = { products: [...resposta.data] };
+
+          setMyCart(...resposta.data);
+          postCart(newCart);
+          console.log(newCart);
         } else {
           const productInCart = {
             amount: quantity,
             ...product,
           };
-          const newCart = [productInCart, ...myCart];
+          console.log("productInCart: ");
+          console.log(productInCart);
+          const newCart = { products: [productInCart, ...resposta.data] };
 
-          setMyCart(newCart);
+          setMyCart([productInCart, ...resposta.data]);
           postCart(newCart);
+          console.log(newCart);
         }
+        setQuantity(1);
       })
       .catch(() => {
         alert("Falha ao pegar o carrinho");
       });
 
     let hasProduct = false;
-
-    console.log(myCart);
   }
 
   return (
