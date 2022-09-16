@@ -24,7 +24,7 @@ export default function CartProduct(props) {
         setReload(reload + 1);
         setMyCart(cart);
 
-        postCart(myCart)
+        postCart({ products: [...myCart] })
             .then((res) => {
                 console.log("sucesso ao postar carrinho");
             })

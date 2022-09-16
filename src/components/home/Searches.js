@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { RiFilterFill } from "react-icons/ri";
+import { BsFillHandbagFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+
 import { getTextFilteredProducts } from "../../service/axiosCatLove";
 
 import MenuFilter from "./MenuFilter";
@@ -9,6 +12,8 @@ import MenuFilter from "./MenuFilter";
 export default function Searches({ products, setProducts }) {
   const [textSearch, setTextSearch] = useState("");
   const [isFiltering, setIsFiltering] = useState(false);
+
+  const navigate = useNavigate();
 
   function handleEnter(e) {
     if (e.key === "Enter") {
@@ -33,13 +38,6 @@ export default function Searches({ products, setProducts }) {
       <IconDiv>
         <FiSearch />
       </IconDiv>
-      <TextSearch
-        type="text"
-        placeholder="Pesquisa"
-        onChange={(e) => setTextSearch(e.target.value)}
-        value={textSearch}
-        onKeyDown={(e) => handleEnter(e)}
-      ></TextSearch>
       <Filter
         onClick={() => {
           setIsFiltering(true);
@@ -47,6 +45,21 @@ export default function Searches({ products, setProducts }) {
         }}
       >
         <RiFilterFill />
+      </Filter>
+      <TextSearch
+        type="text"
+        placeholder="Pesquisa"
+        onChange={(e) => setTextSearch(e.target.value)}
+        value={textSearch}
+        onKeyDown={(e) => handleEnter(e)}
+      ></TextSearch>
+
+      <Filter
+        onClick={() => {
+          navigate("/cart");
+        }}
+      >
+        <BsFillHandbagFill />
       </Filter>
 
       {/* Pagina do filtro */}
@@ -74,14 +87,14 @@ const Wrapper = styled.div`
 
 const IconDiv = styled.div`
   position: absolute;
-  left: 18px;
+  left: 54px;
   display: flex;
   align-items: center;
 `;
 
 const TextSearch = styled.input`
   height: 30px;
-  width: 290px;
+  width: 244px;
 
   border: none;
   border-radius: 5px;

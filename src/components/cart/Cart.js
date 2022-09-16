@@ -61,16 +61,11 @@ export default function MyCart() {
         console.log(amount);
     });
 
-    /*  useEffect(() => {
-        setMyCart([...cart]);
-    }, [reload]); */
-
     useEffect(() => {
         getCart()
             .then((res) => {
                 console.log("get card concluído");
                 setMyCart([...res.data]);
-                console.log(myCart);
             })
             .catch((err) => {
                 alert("Falha ao pegar o carrinho");

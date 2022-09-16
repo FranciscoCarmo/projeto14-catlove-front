@@ -8,6 +8,7 @@ import LoginPage from "./components/LoginPage";
 import SignupPage from "./components/sign-up/SignupPage";
 import Home from "./components/home/Home";
 import MyCart from "./components/cart/Cart";
+import ProductPage from "./components/product/ProductPage";
 // import SigninPage from "./components/SignInPage";
 
 export default function App() {
@@ -42,6 +43,10 @@ export default function App() {
                             ></Route>
                             <Route path='/home' element={<Home />}></Route>
                             <Route path='/cart' element={<MyCart />}></Route>
+                            <Route
+                                path='/home/:id'
+                                element={<ProductPage />}
+                            ></Route>
                         </Routes>
                     </BrowserRouter>
                 </Content>
