@@ -64,6 +64,7 @@ const LoginContent = styled.div`
     font-size: 14px;
     color: #f08080;
     text-decoration: underline;
+    margin-bottom: 30px;
   }
   h1 {
     font-family: "Reenie Beanie", cursive;

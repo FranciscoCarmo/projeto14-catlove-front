@@ -66,7 +66,11 @@ export default function CartProduct(props) {
       </ButtonsSection>
 
       <div>
-        <AiOutlineMinusCircle onClick={() => changeAmount("minus")} />
+        <AiOutlineMinusCircle
+          onClick={() => {
+            if (amount > 1) changeAmount("minus");
+          }}
+        />
         <span>{amount}</span>
         <IoIosAddCircle onClick={() => changeAmount("plus")} />
       </div>

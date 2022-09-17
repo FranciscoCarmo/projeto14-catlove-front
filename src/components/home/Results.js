@@ -32,7 +32,7 @@ export default function Results() {
           <h1>Produtos encontrados</h1>
         </Title>
         {products.map((produto, i) => {
-          if (i % 2 !== 0) {
+          if (i % 2 === 0) {
             return;
           }
           return <OneProduct produto={produto} key={produto._id} />;
@@ -40,7 +40,7 @@ export default function Results() {
       </Fila>
       <Fila>
         {products.map((produto, i) => {
-          if (i % 2 === 0) {
+          if (i % 2 !== 0) {
             return;
           }
           return <OneProduct produto={produto} key={produto._id} />;

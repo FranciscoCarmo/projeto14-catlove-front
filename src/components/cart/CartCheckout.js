@@ -1,11 +1,19 @@
 import { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CheckOutCart } from "../../service/axiosCatLove";
+import UserContext from "../../contexts/UserContext";
+import { useContext } from "react";
+import { postCart } from "../../service/axiosCatLove";
 
 export default function Checkout({ products, value, visible, setVisible }) {
   const name = localStorage.getItem("name");
   const [payment, setPayment] = useState("");
   console.log(payment);
+
+  const { myCart, setMyCart } = useContext(UserContext);
+
+  const navigate = useNavigate();
 
   const body = {
     name,
@@ -22,6 +30,14 @@ export default function Checkout({ products, value, visible, setVisible }) {
     CheckOutCart(body)
       .then(() => {
         alert("Compra realizada");
+
+        setTimeout(() => {
+          navigate("/home");
+        }, 500);
+        setMyCart([]);
+
+        const newCart = { products: [] };
+        postCart(newCart);
       })
       .catch((err) => {
         alert("Falha ao realizar compra");
@@ -70,7 +86,13 @@ export default function Checkout({ products, value, visible, setVisible }) {
             <label>Pix</label>
           </div>
         </Inputs>
-        <button onClick={submit}>Confirmar Compra</button>
+        <button
+          onClick={() => {
+            submit();
+          }}
+        >
+          Confirmar Compra
+        </button>
       </Tela>
 
       <Back onClick={() => setVisible(false)} />
