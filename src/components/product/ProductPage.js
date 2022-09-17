@@ -146,7 +146,7 @@ const BottomMenu = styled.div`
 
     h3 {
         color: #ff6b64;
-        font-size: 25px;
+        font-size: 22px;
         font-weight: bold;
     }
     h2 {
@@ -203,7 +203,7 @@ const Buttons = styled.div`
 const QuantityButton = styled.div`
     border-radius: 25%;
     box-shadow: -3px 5px 8px -3px rgba(75, 75, 75, 0.64);
-    width: 100px;
+    width: 80px;
     height: 40px;
     background-color: white;
     user-select: none;

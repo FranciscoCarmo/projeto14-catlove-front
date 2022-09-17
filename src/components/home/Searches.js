@@ -134,7 +134,7 @@ const Filter = styled.div`
 
     :hover {
         box-shadow: none;
-        filter: brightness(2);
+        filter: brightness(1.2);
     }
 
     :active {
