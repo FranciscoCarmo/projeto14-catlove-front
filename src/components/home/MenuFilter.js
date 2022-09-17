@@ -29,22 +29,24 @@ export default function MenuFilter() {
             <h1>Categorias</h1>
             <Inputs>
                 <div>
-                    <input type='radio' value='higiene' name='category' />{" "}
-                    Higiene
+                    <input type='radio' value='higiene' name='category' />
+                    <label>Higiene</label>
                 </div>
                 <div>
-                    <input type='radio' value='rações' name='category' /> Rações
+                    <input type='radio' value='rações' name='category' />
+                    <label>Rações</label>
                 </div>
                 <div>
-                    <input type='radio' value='brinquedos' name='category' />{" "}
-                    Brinquedos
+                    <input type='radio' value='brinquedos' name='category' />
+                    <label>Brinquedos</label>
                 </div>
                 <div>
-                    <input type='radio' value='petiscos' name='category' />{" "}
-                    Petiscos
+                    <input type='radio' value='petiscos' name='category' />
+                    <label>Petiscos</label>
                 </div>
                 <div>
-                    <input type='radio' value='' name='category' /> Todas
+                    <input type='radio' value='' name='category' />
+                    <label>Todas</label>
                 </div>
             </Inputs>
         </Wrapper>
@@ -54,10 +56,17 @@ const Inputs = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    transform: translateX(-40px);
+
     div {
         display: flex;
         align-items: center;
+        justify-content: flex-start;
+    }
+
+    label {
+        transform: translateX(-10px);
     }
 
     /* & > :last-child {
@@ -65,24 +74,23 @@ const Inputs = styled.div`
   } */
 
     input {
+        appearance: none;
         display: flex;
         align-items: center;
         justify-content: center;
-        appearance: none;
+
         cursor: pointer;
         height: 20px;
         width: 20px;
-        border: 2px solid white;
+        border: 2px solid #ff6b64;
         border-radius: 50%;
-        position: relative;
     }
 
     input:before {
         content: "";
-        position: absolute;
         height: 10px;
         width: 10px;
-        background-color: white;
+        background-color: #ff6b64;
         border-radius: 50%;
         opacity: 0;
     }
@@ -93,11 +101,16 @@ const Inputs = styled.div`
 `;
 
 const Wrapper = styled.div`
-    height: 250px;
-    width: 250px;
+    height: 200px;
+    width: 80vw;
+    max-width: 200px;
+    position: fixed;
+    top: 20vh;
+    left: 0;
+    box-shadow: 3px 6px 11px 3px rgba(75, 75, 75, 0.64);
 
-    background-color: pink;
-    border-radius: 10%;
+    background-color: #f0f0f0;
+    border-radius: 0 20px 20px 0;
 
     display: flex;
     flex-direction: column;
