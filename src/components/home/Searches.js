@@ -14,6 +14,7 @@ export default function Searches() {
     const { products, setProducts } = useContext(UserContext);
     const [textSearch, setTextSearch] = useState("");
     const [isFiltering, setIsFiltering] = useState(false);
+    const { isSearching, setIsSearching } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -25,6 +26,7 @@ export default function Searches() {
             requisicao
                 .then((resposta) => {
                     console.log("Deu certo");
+                    setIsSearching(true);
                     setProducts([...resposta.data]);
                     console.log([...resposta.data]);
                 })
@@ -83,14 +85,13 @@ export default function Searches() {
 const Wrapper = styled.div`
     height: 50px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 
-    padding: 0 20px;
     margin-top: 10px;
     position: relative;
 
     display: flex;
-    justify-content: space-around;
+
     align-items: center;
 `;
 
@@ -103,12 +104,15 @@ const IconDiv = styled.div`
 
 const TextSearch = styled.input`
     height: 45px;
-    width: 60vw;
+    width: 55vw;
     border: none;
     border-radius: 10px;
     padding-left: 40px;
 
-    :placeholder {
+    outline: 0;
+
+    ::placeholder {
+        font-size: 16px;
     }
 
     :active {
@@ -119,12 +123,24 @@ const Filter = styled.div`
     height: 45px;
     width: 45px;
     background-color: white;
+    cursor: pointer;
 
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 20px;
     border-radius: 10px;
+    box-shadow: -3px 5px 8px -3px rgba(75, 75, 75, 0.64);
+
+    :hover {
+        box-shadow: none;
+        filter: brightness(2);
+    }
+
+    :active {
+        transform: translateY(7px);
+        transition: all 0.5s ease-in;
+    }
 `;
 
 const Fosco = styled.div`
@@ -154,5 +170,7 @@ const TextBox = styled.div`
     position: relative;
     display: flex;
     align-items: center;
+    border-radius: 10px;
     margin: 0 10px;
+    box-shadow: -3px 5px 8px -3px rgba(75, 75, 75, 0.64);
 `;
