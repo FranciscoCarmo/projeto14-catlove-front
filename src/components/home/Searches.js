@@ -39,9 +39,6 @@ export default function Searches() {
 
     return (
         <Wrapper>
-            <IconDiv>
-                <FiSearch />
-            </IconDiv>
             <Filter
                 onClick={() => {
                     setIsFiltering(true);
@@ -50,14 +47,18 @@ export default function Searches() {
             >
                 <RiFilterFill />
             </Filter>
-            <TextSearch
-                type='text'
-                placeholder='Pesquisa'
-                onChange={(e) => setTextSearch(e.target.value)}
-                value={textSearch}
-                onKeyDown={(e) => handleEnter(e)}
-            ></TextSearch>
-
+            <TextBox>
+                <TextSearch
+                    type='text'
+                    placeholder='Pesquisa'
+                    onChange={(e) => setTextSearch(e.target.value)}
+                    value={textSearch}
+                    onKeyDown={(e) => handleEnter(e)}
+                ></TextSearch>
+                <IconDiv>
+                    <FiSearch />
+                </IconDiv>
+            </TextBox>
             <Filter
                 onClick={() => {
                     navigate("/cart");
@@ -81,9 +82,10 @@ export default function Searches() {
 
 const Wrapper = styled.div`
     height: 50px;
+    display: flex;
+    justify-content: space-around;
 
-    margin-left: 20px;
-    margin-right: 20px;
+    padding: 0 20px;
     margin-top: 10px;
     position: relative;
 
@@ -94,17 +96,16 @@ const Wrapper = styled.div`
 
 const IconDiv = styled.div`
     position: absolute;
-    left: 54px;
+    left: 10px;
     display: flex;
     align-items: center;
 `;
 
 const TextSearch = styled.input`
-    height: 30px;
-    width: 244px;
-
+    height: 45px;
+    width: 60vw;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     padding-left: 40px;
 
     :placeholder {
@@ -115,15 +116,15 @@ const TextSearch = styled.input`
 `;
 
 const Filter = styled.div`
-    height: 30px;
-    width: 30px;
+    height: 45px;
+    width: 45px;
     background-color: white;
 
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 20px;
-    border-radius: 6px;
+    border-radius: 10px;
 `;
 
 const Fosco = styled.div`
@@ -147,4 +148,11 @@ const Menu = styled.div`
 
     justify-content: center;
     align-items: center;
+`;
+
+const TextBox = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
 `;
