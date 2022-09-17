@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { IoIosAddCircle } from "react-icons/io";
 import { MdClose } from "react-icons/md";
-import { AiFillWechat, AiOutlineMinusCircle } from "react-icons/ai";
+import { HiOutlineMinusCircle } from "react-icons/hi";
 import UserContext from "../../contexts/UserContext";
 import { useContext } from "react";
 import { deleteProduct, postCart } from "../../service/axiosCatLove";
@@ -50,12 +50,16 @@ export default function CartProduct(props) {
 
     return (
         <Wrapper>
-            <img src={image} />
+            <div>
+                <img src={image} />
+            </div>
 
             <ProductInfo>
                 <h1>{name}</h1>
                 <p>{category}</p>
-                <h2>R$ {(price / 100).toFixed(2)}</h2>
+                <h2>
+                    R$ {(price / 100).toFixed(2).toString().replace(".", ",")}
+                </h2>
             </ProductInfo>
             <ButtonsSection>
                 <MdClose
@@ -66,9 +70,9 @@ export default function CartProduct(props) {
             </ButtonsSection>
 
             <div>
-                <AiOutlineMinusCircle onClick={() => changeAmount("minus")} />
+                <Minus onClick={() => changeAmount("minus")} />
                 <span>{amount}</span>
-                <IoIosAddCircle onClick={() => changeAmount("plus")} />
+                <Plus onClick={() => changeAmount("plus")} />
             </div>
         </Wrapper>
     );
@@ -83,14 +87,17 @@ const ProductInfo = styled.div`
     color: #1c1c1c;
 
     h1 {
-        font-size: 12px;
+        font-size: 11px;
+        font-weight: 700;
     }
     p {
-        font-size: 12px;
-        color: #daddd8;
+        font-size: 11px;
+        color: #8a8a8a;
     }
     h2 {
-        font-size: 15px;
+        color: #ff6b64;
+        font-size: 12px;
+        font-weight: 700;
     }
 `;
 
@@ -99,28 +106,47 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     position: relative;
-    height: 100px;
+    height: 120px;
     width: 100%;
-    background-color: #fafaff;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #f0f0f0;
     border-radius: 8px;
     margin-bottom: 10px;
     padding: 0 12px;
 
-    img {
-        height: 40%;
+    & > :first-child {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 90px;
+        width: 80px;
+        margin-right: 10px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: -3px 5px 8px -3px rgba(75, 75, 75, 0.64);
+
+        img {
+            height: 70%;
+        }
     }
 
     & > :last-child {
         display: flex;
         align-items: center;
-        width: 20%;
+        width: 20vw;
         justify-content: space-around;
-        font-size: 20px;
+        font-size: 30px;
         margin-top: 40px;
+        cursor: pointer;
+        font-weight: 400;
+        max-width: 90px;
 
         span {
-            font-size: 8px;
+            font-size: 12px;
             font-weight: 700;
+            margin: 0 5px;
         }
     }
 `;
@@ -128,8 +154,32 @@ const Wrapper = styled.div`
 const ButtonsSection = styled.div`
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 
     position: absolute;
     right: 10px;
     top: 10px;
+`;
+
+const Minus = styled(HiOutlineMinusCircle)`
+    :hover {
+        transform: translateY(-2px);
+        transition: all 0.1s ease-in;
+    }
+
+    :active {
+        transform: translateY(4px);
+        transition: all 0.2s ease-in;
+    }
+`;
+const Plus = styled(IoIosAddCircle)`
+    :hover {
+        transform: translateY(-2px);
+        transition: all 0.1s ease-in;
+    }
+
+    :active {
+        transform: translateY(4px);
+        transition: all 0.2s ease-in;
+    }
 `;

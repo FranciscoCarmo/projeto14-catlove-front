@@ -19,7 +19,10 @@ export default function OneProduct(props) {
                 <h3>{name}</h3>
                 <p>{category}</p>
                 <PriceFav>
-                    <h2>R$ {(price / 100).toFixed(2)}</h2>
+                    <h2>
+                        R${" "}
+                        {(price / 100).toFixed(2).toString().replace(".", ",")}
+                    </h2>
                     <Hearth />
                 </PriceFav>
             </Info>

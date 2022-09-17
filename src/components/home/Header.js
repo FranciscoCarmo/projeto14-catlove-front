@@ -36,6 +36,13 @@ const Wrapper = styled.div`
 
 const Back = styled.div`
     font-size: 25px;
+    cursor: pointer;
+
+    :hover {
+        transition: all 0.1s ease-in;
+        transform: translateY(-2px);
+        font-size: 30px;
+    }
 `;
 
 const ProfilePicture = styled.div`
