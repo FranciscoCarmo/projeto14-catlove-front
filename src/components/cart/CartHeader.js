@@ -51,15 +51,9 @@ const Wrapper = styled.div`
         border-radius: 5px;
         position: relative;
         box-shadow: -3px 5px 8px -3px rgba(75, 75, 75, 0.64);
-        cursor: pointer;
 
         background-color: #ffffff;
         font-size: 18px;
-
-        :hover {
-            transition: all 0.1s ease-in;
-            transform: translateY(-5px);
-        }
 
         span {
             display: flex;

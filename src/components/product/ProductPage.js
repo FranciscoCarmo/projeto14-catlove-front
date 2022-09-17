@@ -141,7 +141,7 @@ const BottomMenu = styled.div`
         font-size: 20px;
         font-weight: bold;
         margin-bottom: 10px;
-        line-height: 30px;
+        line-height: 23px;
     }
 
     h3 {

@@ -98,7 +98,14 @@ export default function MyCart() {
                     <></>
                 )}
             </PurchaseInfo>
-            <button onClick={() => setVisible(true)}>
+            <button
+                onClick={() => {
+                    if (subtotal === 0) {
+                        return alert("Insira produtos no carrinho primeiro!");
+                    }
+                    setVisible(true);
+                }}
+            >
                 {" "}
                 Proceder para o CheckOut
             </button>
@@ -127,6 +134,8 @@ const NoProducts = styled.div`
 `;
 
 const PurchaseInfo = styled.div`
+    padding: 0 10px;
+
     div {
         display: flex;
         align-items: center;

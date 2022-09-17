@@ -58,8 +58,6 @@ export default function Results() {
 
 const Wrapper = styled.div`
     margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
 
     overflow-y: scroll;
 

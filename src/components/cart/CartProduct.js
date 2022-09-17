@@ -129,6 +129,7 @@ const Wrapper = styled.div`
 
         img {
             height: 70%;
+            width: auto;
         }
     }
 
