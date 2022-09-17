@@ -39,9 +39,6 @@ export default function Searches() {
 
   return (
     <Wrapper>
-      <IconDiv>
-        <FiSearch />
-      </IconDiv>
       <Filter
         onClick={() => {
           setIsFiltering(true);
@@ -50,14 +47,18 @@ export default function Searches() {
       >
         <RiFilterFill />
       </Filter>
-      <TextSearch
-        type="text"
-        placeholder="Pesquisa"
-        onChange={(e) => setTextSearch(e.target.value)}
-        value={textSearch}
-        onKeyDown={(e) => handleEnter(e)}
-      ></TextSearch>
-
+      <TextBox>
+        <TextSearch
+          type="text"
+          placeholder="Pesquisa"
+          onChange={(e) => setTextSearch(e.target.value)}
+          value={textSearch}
+          onKeyDown={(e) => handleEnter(e)}
+        ></TextSearch>
+        <IconDiv>
+          <FiSearch />
+        </IconDiv>
+      </TextBox>
       <Filter
         onClick={() => {
           navigate("/cart");
@@ -91,7 +92,7 @@ const Wrapper = styled.div`
 
 const IconDiv = styled.div`
   position: absolute;
-  left: 54px;
+  left: 10px;
   display: flex;
   align-items: center;
 `;
@@ -143,5 +144,11 @@ const Menu = styled.div`
   display: ${(props) => (props.active ? "flex" : "none")};
 
   justify-content: center;
+  align-items: center;
+`;
+
+const TextBox = styled.div`
+  position: relative;
+  display: flex;
   align-items: center;
 `;
