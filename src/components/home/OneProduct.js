@@ -29,6 +29,7 @@ export default function OneProduct(props) {
 
 const Wrapper = styled.div`
     width: 100%;
+    cursor: pointer;
 
     background-color: white;
     border-radius: 10px;

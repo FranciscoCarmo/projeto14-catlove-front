@@ -100,6 +100,7 @@ const Botao = styled.button`
     width: 90vw;
     max-width: 303px;
     height: 45px;
+    cursor: pointer;
 
     border: none;
     border-radius: 5px;
