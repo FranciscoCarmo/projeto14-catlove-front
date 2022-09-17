@@ -29,7 +29,6 @@ const Wrapper = styled.div`
     justify-content: space-between;
 
     h2 {
-        color: #1c1c1c;
         font-size: 18px;
         font-weight: bold;
     }

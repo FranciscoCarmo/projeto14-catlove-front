@@ -20,7 +20,7 @@ export default function OneProduct(props) {
                 <p>{category}</p>
                 <PriceFav>
                     <h2>R$ {(price / 100).toFixed(2)}</h2>
-                    <BsFillHeartFill color='gray' />
+                    <Hearth />
                 </PriceFav>
             </Info>
         </Wrapper>
@@ -29,18 +29,18 @@ export default function OneProduct(props) {
 
 const Wrapper = styled.div`
     width: 100%;
-    min-height: 240px;
+
     background-color: white;
     border-radius: 10px;
     box-shadow: -3px 5px 8px -3px rgba(75, 75, 75, 0.64);
     margin-top: 20px;
+    padding: 15px 10px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
 
     img {
-        margin: 15px 0;
         height: 100px;
     }
 `;
@@ -49,29 +49,36 @@ const Info = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     margin-top: 10px;
 
     h3 {
-        font-size: 10px;
+        font-size: 12px;
         font-weight: bold;
     }
     p {
-        font-size: 10px;
-
-        margin-top: 3px;
+        font-size: 12px;
+        color: #757774;
+        margin-top: 5px;
     }
 `;
 
 const PriceFav = styled.div`
     display: flex;
+    align-items: center;
     justify-content: space-between;
     margin-top: 8px;
     margin-bottom: 8px;
 
     h2 {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: bold;
+        margin-top: 5px;
+        color: #ff6b64;
     }
+`;
+
+const Hearth = styled(BsFillHeartFill)`
+    font-size: 18px;
 `;
