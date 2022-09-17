@@ -33,7 +33,7 @@ export default function Results() {
                 <Title>
                     <h1>
                         {isSearching
-                            ? `Produtos Encontrados: ${products.length}`
+                            ? `${products.length} Produtos Encontrados`
                             : "Todos os Produtos"}
                     </h1>
                 </Title>
@@ -75,22 +75,14 @@ const Fila = styled.div`
 `;
 
 const Title = styled.div`
-    width: 90%;
-    height: 50px;
+    width: 95%;
+    min-height: 30px;
     text-overflow: wrap;
-    margin: 20px 0;
+    margin: 20px 0 5px;
 
     h1 {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: bold;
+        line-height: 30px;
     }
-`;
-
-const Product = styled.div`
-    width: 100%;
-    height: 180px;
-    background-color: white;
-    border-radius: 8px;
-
-    margin-top: 20px;
 `;
