@@ -18,60 +18,50 @@ export default function Searches() {
 
   const navigate = useNavigate();
 
-  function handleEnter(e) {
-    if (e.key === "Enter") {
-      const requisicao = getTextFilteredProducts(textSearch);
-      console.log(textSearch);
-
-      requisicao
-        .then((resposta) => {
-          console.log("Deu certo");
-          setIsSearching(true);
-          setProducts([...resposta.data]);
-          console.log([...resposta.data]);
-        })
-        .catch(() => {
-          alert("Falha ao pegar os produtos filtrados");
-
-          console.log(requisicao);
-          setTextSearch("");
-        });
+    function handleEnter(e) {
+        if (e.key === "Enter") {
+            const requisicao = getTextFilteredProducts(textSearch);
+            requisicao
+                .then((resposta) => {
+                    setIsSearching(true);
+                    setProducts([...resposta.data]);
+                })
+                .catch(() => {
+                    alert("Falha ao pegar os produtos filtrados");
+                    setTextSearch("");
+                });
+        }
     }
   }
 
-  return (
-    <Wrapper>
-      <Filter
-        onClick={() => {
-          setIsFiltering(true);
-          console.log(isFiltering);
-        }}
-      >
-        <RiFilterFill />
-      </Filter>
-      <TextBox>
-        <TextSearch
-          type="text"
-          placeholder="Pesquisa"
-          onChange={(e) => setTextSearch(e.target.value)}
-          value={textSearch}
-          onKeyDown={(e) => handleEnter(e)}
-        ></TextSearch>
-        <IconDiv
-          onClick={() => {
-            handleEnter();
-          }}
-        >
-          <FiSearch />
-        </IconDiv>
-      </TextBox>
-      <Filter
-        onClick={() => {
-          navigate("/cart");
-        }}
-      >
-        <BsFillHandbagFill />
-      </Filter>
+    return (
+        <Wrapper>
+            <Filter
+                onClick={() => {
+                    setIsFiltering(true);
+                }}
+            >
+                <RiFilterFill />
+            </Filter>
+            <TextBox>
+                <TextSearch
+                    type='text'
+                    placeholder='Pesquisa'
+                    onChange={(e) => setTextSearch(e.target.value)}
+                    value={textSearch}
+                    onKeyDown={(e) => handleEnter(e)}
+                ></TextSearch>
+                <IconDiv>
+                    <FiSearch />
+                </IconDiv>
+            </TextBox>
+            <Filter
+                onClick={() => {
+                    navigate("/cart");
+                }}
+            >
+                <BsFillHandbagFill />
+            </Filter>
 
       {/* Pagina do filtro */}
 

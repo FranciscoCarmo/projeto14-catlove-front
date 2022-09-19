@@ -28,7 +28,6 @@ export default function FormsSigninSection() {
             password: password,
             confirm,
         };
-        console.log(signinForm);
 
         const requisicao = signUp(signinForm);
 
@@ -36,9 +35,6 @@ export default function FormsSigninSection() {
 
         requisicao
             .then(() => {
-                console.log("Deu certo");
-                console.log(requisicao);
-
                 navigate("/", { replace: true });
 
                 setEmail("");
@@ -49,8 +45,6 @@ export default function FormsSigninSection() {
             })
             .catch(() => {
                 alert("Falha no cadastro");
-
-                console.log(requisicao);
 
                 setIsLoading(false);
             });

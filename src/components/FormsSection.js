@@ -22,7 +22,6 @@ export default function FormsSection() {
             email: email,
             password: password,
         };
-        console.log(loginData);
 
         const requisicao = signIn(loginData);
 
@@ -30,10 +29,7 @@ export default function FormsSection() {
 
         requisicao
             .then((resposta) => {
-                console.log("Deu certo");
-                console.log(resposta.data);
                 setUser({ ...resposta.data });
-                console.log(resposta.data.token);
 
                 localStorage.setItem("token", resposta.data.token);
                 localStorage.setItem("image", resposta.data.image);
@@ -48,7 +44,6 @@ export default function FormsSection() {
             .catch(() => {
                 alert("Falha no login");
 
-                console.log(requisicao);
                 setEmail("");
                 setPassword("");
                 setIsLoading(false);

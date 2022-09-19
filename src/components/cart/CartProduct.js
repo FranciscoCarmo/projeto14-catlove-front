@@ -26,25 +26,23 @@ export default function CartProduct(props) {
         setMyCart(cart);
 
         postCart({ products: [...myCart] })
-            .then((res) => {
+            .then(() => {
                 console.log("sucesso ao postar carrinho");
             })
             .catch((err) => {
                 alert("Falha ao enviar o carrinho");
-                console.log(err);
+                console.error(err);
             });
     }
 
     function handleDelete() {
         deleteProduct(props.produto)
             .then((res) => {
-                console.log(props.produto);
-                console.log("sucesso ao enviar deletar");
                 setReload(reload + 1);
             })
             .catch((err) => {
                 alert("Falha ao enviar o delete");
-                console.log(err);
+                console.error(err);
             });
     }
 

@@ -21,37 +21,29 @@ export default function ProductPage() {
 
         requisicao
             .then((resposta) => {
-                console.log("Deu certo");
                 setMyCart([...resposta.data]);
-                console.log(resposta.data);
 
                 if (resposta.data.find((prod) => prod._id === id)) {
                     const productInCart = resposta.data.find(
                         (prod) => prod._id === id
                     );
-                    console.log("productInCart: ");
-                    console.log(productInCart);
                     productInCart.amount = productInCart.amount + quantity;
 
                     const newCart = { products: [...resposta.data] };
 
                     setMyCart([...resposta.data]);
                     postCart(newCart);
-                    console.log(newCart);
                 } else {
                     const productInCart = {
                         amount: quantity,
                         ...product,
                     };
-                    console.log("productInCart: ");
-                    console.log(productInCart);
                     const newCart = {
                         products: [productInCart, ...resposta.data],
                     };
 
                     setMyCart([productInCart, ...resposta.data]);
                     postCart(newCart);
-                    console.log(newCart);
                 }
                 setQuantity(1);
             })
