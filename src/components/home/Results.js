@@ -14,14 +14,10 @@ export default function Results() {
 
         requisicao
             .then((resposta) => {
-                console.log("Deu certo");
                 setProducts([...resposta.data]);
-                console.log(resposta.data);
             })
             .catch(() => {
                 alert("Falha ao pegar os produtos");
-
-                console.log(products);
             });
     }
 

@@ -9,7 +9,6 @@ import { postCart } from "../../service/axiosCatLove";
 export default function Checkout({ products, value, visible, setVisible }) {
     const name = localStorage.getItem("name");
     const [payment, setPayment] = useState("");
-    console.log(payment);
 
     const { myCart, setMyCart } = useContext(UserContext);
 
@@ -41,7 +40,7 @@ export default function Checkout({ products, value, visible, setVisible }) {
             })
             .catch((err) => {
                 alert("Falha ao realizar compra");
-                console.log(err.message);
+                console.error(err.message);
             });
     }
 
