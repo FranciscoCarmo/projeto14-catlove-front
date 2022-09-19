@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import { BsFillHeartFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-
-import toy from "../../assets/toy.jpg";
 
 export default function OneProduct(props) {
     const { name, price, image, category, _id } = props.produto;
@@ -23,7 +20,6 @@ export default function OneProduct(props) {
                         R${" "}
                         {(price / 100).toFixed(2).toString().replace(".", ",")}
                     </h2>
-                    <Hearth />
                 </PriceFav>
             </Info>
         </Wrapper>
@@ -81,8 +77,4 @@ const PriceFav = styled.div`
         margin-top: 5px;
         color: #ff6b64;
     }
-`;
-
-const Hearth = styled(BsFillHeartFill)`
-    font-size: 18px;
 `;
