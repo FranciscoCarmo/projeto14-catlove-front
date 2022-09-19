@@ -18,50 +18,62 @@ export default function Searches() {
 
   const navigate = useNavigate();
 
-    function handleEnter(e) {
-        if (e.key === "Enter") {
-            const requisicao = getTextFilteredProducts(textSearch);
-            requisicao
-                .then((resposta) => {
-                    setIsSearching(true);
-                    setProducts([...resposta.data]);
-                })
-                .catch(() => {
-                    alert("Falha ao pegar os produtos filtrados");
-                    setTextSearch("");
-                });
-        }
+  function handleEnter(e) {
+    if (e.key === "Enter") {
+      const requisicao = getTextFilteredProducts(textSearch);
+      requisicao
+        .then((resposta) => {
+          setIsSearching(true);
+          setProducts([...resposta.data]);
+        })
+        .catch(() => {
+          alert("Falha ao pegar os produtos filtrados");
+          setTextSearch("");
+        });
     }
   }
 
-    return (
-        <Wrapper>
-            <Filter
-                onClick={() => {
-                    setIsFiltering(true);
-                }}
-            >
-                <RiFilterFill />
-            </Filter>
-            <TextBox>
-                <TextSearch
-                    type='text'
-                    placeholder='Pesquisa'
-                    onChange={(e) => setTextSearch(e.target.value)}
-                    value={textSearch}
-                    onKeyDown={(e) => handleEnter(e)}
-                ></TextSearch>
-                <IconDiv>
-                    <FiSearch />
-                </IconDiv>
-            </TextBox>
-            <Filter
-                onClick={() => {
-                    navigate("/cart");
-                }}
-            >
-                <BsFillHandbagFill />
-            </Filter>
+  function handleClick() {
+    const requisicao = getTextFilteredProducts(textSearch);
+    requisicao
+      .then((resposta) => {
+        setIsSearching(true);
+        setProducts([...resposta.data]);
+      })
+      .catch(() => {
+        alert("Falha ao pegar os produtos filtrados");
+        setTextSearch("");
+      });
+  }
+
+  return (
+    <Wrapper>
+      <Filter
+        onClick={() => {
+          setIsFiltering(true);
+        }}
+      >
+        <RiFilterFill />
+      </Filter>
+      <TextBox>
+        <TextSearch
+          type="text"
+          placeholder="Pesquisa"
+          onChange={(e) => setTextSearch(e.target.value)}
+          value={textSearch}
+          onKeyDown={(e) => handleEnter(e)}
+        ></TextSearch>
+        <IconDiv
+          onClick={() => {
+            handleClick();
+          }}
+        >
+          <FiSearch />
+        </IconDiv>
+      </TextBox>
+      <Filter>
+        <BsFillHandbagFill />
+      </Filter>
 
       {/* Pagina do filtro */}
 
@@ -91,6 +103,7 @@ const IconDiv = styled.div`
   left: 10px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 const TextSearch = styled.input`
