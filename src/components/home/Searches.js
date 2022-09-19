@@ -71,7 +71,11 @@ export default function Searches() {
           <FiSearch />
         </IconDiv>
       </TextBox>
-      <Filter>
+      <Filter
+        onClick={() => {
+          navigate("/cart");
+        }}
+      >
         <BsFillHandbagFill />
       </Filter>
 
