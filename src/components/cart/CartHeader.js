@@ -26,7 +26,6 @@ const Wrapper = styled.div`
     justify-content: space-between;
     padding: 0 18px;
     margin-bottom: 30px;
-    color: #1c1c1c;
 
     h1 {
         font-size: 15px;
@@ -35,6 +34,12 @@ const Wrapper = styled.div`
 
     & > :first-child {
         font-size: 20px;
+        cursor: pointer;
+        :hover {
+            transition: all 0.1s ease-in;
+            transform: translateY(-2px);
+            font-size: 30px;
+        }
     }
 
     & > :last-child {
@@ -45,6 +50,7 @@ const Wrapper = styled.div`
         width: 40px;
         border-radius: 5px;
         position: relative;
+        box-shadow: -3px 5px 8px -3px rgba(75, 75, 75, 0.64);
 
         background-color: #ffffff;
         font-size: 18px;
@@ -60,7 +66,7 @@ const Wrapper = styled.div`
             width: 15px;
             font-size: 10px;
             font-weight: 500;
-            background-color: black;
+            background-color: #1c1c1c;
             transform: translateX(5px) translateY(-5px);
 
             top: 0;

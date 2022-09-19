@@ -16,11 +16,10 @@ export default function App() {
     const [myCart, setMyCart] = useState([]);
     const [products, setProducts] = useState([]);
     const [reload, setReload] = useState(0);
+    const [isSearching, setIsSearching] = useState(false);
 
     return (
         <>
-            <GlobalStyles />
-
             <UserContext.Provider
                 value={{
                     user,
@@ -31,9 +30,13 @@ export default function App() {
                     setProducts,
                     reload,
                     setReload,
+                    isSearching,
+                    setIsSearching,
                 }}
             >
                 <Content>
+                    <GlobalStyles />
+
                     <BrowserRouter>
                         <Routes>
                             <Route path='/' element={<LoginPage />}></Route>

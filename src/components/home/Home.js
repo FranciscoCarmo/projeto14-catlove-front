@@ -6,23 +6,24 @@ import UserContext from "../../contexts/UserContext";
 import { useContext } from "react";
 
 export default function Home() {
-  const { products, setProducts } = useContext(UserContext);
+    const { products, setProducts } = useContext(UserContext);
 
-  return (
-    <Wrapper>
-      <Header />
-      <Searches products={products} setProducts={setProducts} />
-      <Results products={products} setProducts={setProducts} />
-    </Wrapper>
-  );
+    return (
+        <Wrapper>
+            <Header />
+            <Searches products={products} setProducts={setProducts} />
+            <Results products={products} setProducts={setProducts} />
+        </Wrapper>
+    );
 }
 
 const Wrapper = styled.div`
-  width: 100%;
+    width: 100%;
+    padding: 30px 18px;
 
-  background-color: #fcdacc;
-  display: flex;
-  flex-direction: column;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
 
-  min-height: 100vh;
+    min-height: 100vh;
 `;

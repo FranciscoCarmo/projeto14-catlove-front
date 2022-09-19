@@ -11,144 +11,166 @@ import { getTextFilteredProducts } from "../../service/axiosCatLove";
 import MenuFilter from "./MenuFilter";
 
 export default function Searches() {
-  const { products, setProducts } = useContext(UserContext);
-  const [textSearch, setTextSearch] = useState("");
-  const [isFiltering, setIsFiltering] = useState(false);
+    const { products, setProducts } = useContext(UserContext);
+    const [textSearch, setTextSearch] = useState("");
+    const [isFiltering, setIsFiltering] = useState(false);
+    const { isSearching, setIsSearching } = useContext(UserContext);
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  function handleEnter(e) {
-    if (e.key === "Enter") {
-      const requisicao = getTextFilteredProducts(textSearch);
-      console.log(textSearch);
+    function handleEnter(e) {
+        if (e.key === "Enter") {
+            const requisicao = getTextFilteredProducts(textSearch);
+            console.log(textSearch);
 
-      requisicao
-        .then((resposta) => {
-          console.log("Deu certo");
-          setProducts([...resposta.data]);
-          console.log([...resposta.data]);
-        })
-        .catch(() => {
-          alert("Falha ao pegar os produtos filtrados");
+            requisicao
+                .then((resposta) => {
+                    console.log("Deu certo");
+                    setIsSearching(true);
+                    setProducts([...resposta.data]);
+                    console.log([...resposta.data]);
+                })
+                .catch(() => {
+                    alert("Falha ao pegar os produtos filtrados");
 
-          console.log(requisicao);
-          setTextSearch("");
-        });
+                    console.log(requisicao);
+                    setTextSearch("");
+                });
+        }
     }
-  }
 
-  return (
-    <Wrapper>
-      <Filter
-        onClick={() => {
-          setIsFiltering(true);
-          console.log(isFiltering);
-        }}
-      >
-        <RiFilterFill />
-      </Filter>
-      <TextBox>
-        <TextSearch
-          type="text"
-          placeholder="Pesquisa"
-          onChange={(e) => setTextSearch(e.target.value)}
-          value={textSearch}
-          onKeyDown={(e) => handleEnter(e)}
-        ></TextSearch>
-        <IconDiv>
-          <FiSearch />
-        </IconDiv>
-      </TextBox>
-      <Filter
-        onClick={() => {
-          navigate("/cart");
-        }}
-      >
-        <BsFillHandbagFill />
-      </Filter>
+    return (
+        <Wrapper>
+            <Filter
+                onClick={() => {
+                    setIsFiltering(true);
+                    console.log(isFiltering);
+                }}
+            >
+                <RiFilterFill />
+            </Filter>
+            <TextBox>
+                <TextSearch
+                    type='text'
+                    placeholder='Pesquisa'
+                    onChange={(e) => setTextSearch(e.target.value)}
+                    value={textSearch}
+                    onKeyDown={(e) => handleEnter(e)}
+                ></TextSearch>
+                <IconDiv>
+                    <FiSearch />
+                </IconDiv>
+            </TextBox>
+            <Filter
+                onClick={() => {
+                    navigate("/cart");
+                }}
+            >
+                <BsFillHandbagFill />
+            </Filter>
 
-      {/* Pagina do filtro */}
+            {/* Pagina do filtro */}
 
-      <Fosco active={isFiltering} onClick={() => setIsFiltering(false)}></Fosco>
-      <Menu active={isFiltering}>
-        <MenuFilter products={products} setProducts={setProducts} />
-      </Menu>
-    </Wrapper>
-  );
+            <Fosco
+                active={isFiltering}
+                onClick={() => setIsFiltering(false)}
+            ></Fosco>
+            <Menu active={isFiltering}>
+                <MenuFilter products={products} setProducts={setProducts} />
+            </Menu>
+        </Wrapper>
+    );
 }
 
 const Wrapper = styled.div`
-  height: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
 
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 10px;
-  position: relative;
+    margin-top: 10px;
+    position: relative;
 
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+    display: flex;
+
+    align-items: center;
 `;
 
 const IconDiv = styled.div`
-  position: absolute;
-  left: 10px;
-  display: flex;
-  align-items: center;
+    position: absolute;
+    left: 10px;
+    display: flex;
+    align-items: center;
 `;
 
 const TextSearch = styled.input`
-  height: 30px;
-  width: 244px;
+    height: 45px;
+    width: 55vw;
+    border: none;
+    border-radius: 10px;
+    padding-left: 40px;
 
-  border: none;
-  border-radius: 5px;
-  padding-left: 40px;
+    outline: 0;
 
-  :placeholder {
-  }
+    ::placeholder {
+        font-size: 16px;
+    }
 
-  :active {
-  }
+    :active {
+    }
 `;
 
 const Filter = styled.div`
-  height: 30px;
-  width: 30px;
-  background-color: white;
+    height: 45px;
+    width: 45px;
+    background-color: white;
+    cursor: pointer;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    border-radius: 10px;
+    box-shadow: -3px 5px 8px -3px rgba(75, 75, 75, 0.64);
+
+    :hover {
+        box-shadow: none;
+        filter: brightness(1.2);
+    }
+
+    :active {
+        transform: translateY(7px);
+        transition: all 0.5s ease-in;
+    }
 `;
 
 const Fosco = styled.div`
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(255, 255, 255, 0.7);
-  display: ${(props) => (props.active ? "flex" : "none")};
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: ${(props) => (props.active ? "flex" : "none")};
 
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
 `;
 
 const Menu = styled.div`
-  position: absolute;
-  bottom: -200px;
-  left: calc(50vw - 150px);
-  display: ${(props) => (props.active ? "flex" : "none")};
+    position: absolute;
+    bottom: -200px;
+    left: calc(50vw - 150px);
+    display: ${(props) => (props.active ? "flex" : "none")};
 
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
 `;
 
 const TextBox = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    margin: 0 10px;
+    box-shadow: -3px 5px 8px -3px rgba(75, 75, 75, 0.64);
 `;

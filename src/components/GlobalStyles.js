@@ -138,13 +138,15 @@ table {
 
   
 
-Link{
+a{
     text-decoration: none;
 }
 
 
-*{
+*{ 
 	box-sizing: border-box;
+   color: #1c1c1c;
 }
+
 `;
 export default GlobalStyles;
