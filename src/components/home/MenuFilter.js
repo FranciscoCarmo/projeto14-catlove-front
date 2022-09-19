@@ -13,14 +13,10 @@ export default function MenuFilter() {
 
         requisicao
             .then((resposta) => {
-                console.log("Deu certo");
-
                 setProducts([...resposta.data]);
             })
             .catch(() => {
                 alert("Falha ao pegar os produtos filtrados por categoria");
-
-                console.log(requisicao);
             });
     }
 

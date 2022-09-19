@@ -21,19 +21,13 @@ export default function Searches() {
     function handleEnter(e) {
         if (e.key === "Enter") {
             const requisicao = getTextFilteredProducts(textSearch);
-            console.log(textSearch);
-
             requisicao
                 .then((resposta) => {
-                    console.log("Deu certo");
                     setIsSearching(true);
                     setProducts([...resposta.data]);
-                    console.log([...resposta.data]);
                 })
                 .catch(() => {
                     alert("Falha ao pegar os produtos filtrados");
-
-                    console.log(requisicao);
                     setTextSearch("");
                 });
         }
@@ -44,7 +38,6 @@ export default function Searches() {
             <Filter
                 onClick={() => {
                     setIsFiltering(true);
-                    console.log(isFiltering);
                 }}
             >
                 <RiFilterFill />

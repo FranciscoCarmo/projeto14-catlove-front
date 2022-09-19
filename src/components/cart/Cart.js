@@ -25,18 +25,16 @@ export default function MyCart() {
         let price = Number(e.price);
         let amount = Number(e.amount);
         subtotal += amount * price;
-        console.log(subtotal);
     });
 
     useEffect(() => {
         getCart()
             .then((res) => {
-                console.log("get card concluído");
                 setMyCart([...res.data]);
             })
             .catch((err) => {
                 alert("Falha ao pegar o carrinho");
-                console.log(err);
+                console.error(err);
             });
     }, [reload]);
 
